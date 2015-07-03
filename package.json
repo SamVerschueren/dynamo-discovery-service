@@ -1,0 +1,26 @@
+{
+  "name": "dds",
+  "version": "0.1.0",
+  "description": "Discovery service like etcd but implemented with DynamoDB",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/SamVerschueren/dynamo-discovery-service.git"
+  },
+  "keywords": [
+    "etcd",
+    "discovery"
+  ],
+  "author": {
+      "name": "Sam Verschueren",
+      "email": "sam.verschueren@gmail.com"
+  },
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/SamVerschueren/dynamo-discovery-service/issues"
+  },
+  "homepage": "https://github.com/SamVerschueren/dynamo-discovery-service"
+}
