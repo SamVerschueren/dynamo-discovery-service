@@ -1,4 +1,4 @@
-# dynamo-discovery-service
+# Dynamo Discovery Service
 
 > Discovery service like etcd but implemented with DynamoDB
 
