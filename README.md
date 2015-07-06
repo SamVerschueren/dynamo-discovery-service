@@ -2,6 +2,12 @@
 
 > Discovery service like etcd but implemented with DynamoDB
 
+## Installation (not yet available)
+
+```bash
+$ npm install -g dds
+```
+
 ## Introduction
 
 At the AWS Summit in Amsterdam I spoke with [@sebsto](https://twitter.com/sebsto) regarding service discovery. I asked 
@@ -14,6 +20,14 @@ each service. This repo will try to tackle that.
 ## CLI
 
 ### Configuration
+
+First of all, you need to create a `dds` user in the AWS portal. This user can interact with the DynamoDB database in order to
+store and retrieve services from the database.
+
+Go to `AWS -> Identity and Access Management`. Create a new user with the name `dds` and use those credentials to configure the
+`dds` service.
+
+> TODO: Add policy
 
 In order for the service to store and read services from the DynamoDB database, you need to configure the credentials of
 the `dds` user and the region.
