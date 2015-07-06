@@ -27,6 +27,8 @@
   },
   "homepage": "https://github.com/SamVerschueren/dynamo-discovery-service",
   "dependencies": {
-    "minimist": "^1.1.1"
+    "aws-sdk": "^2.1.36",
+    "minimist": "^1.1.1",
+    "pwuid": "^1.0.2"
   }
 }
