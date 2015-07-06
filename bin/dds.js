@@ -58,12 +58,18 @@ function runTask(task) {
         fs.writeFileSync(path.join(pwuid().dir, '/.aws/credentials'), credentials.join(os.EOL));
         fs.writeFileSync(path.join(pwuid().dir, '/.aws/config'), config.join(os.EOL));
     }
-    else if(task === 'set') {
-        var key = argv._[1],
-            host = argv.host,
-            port = argv.port,
-            version = argv.version.split('.');
+    else {
+        // TODO read region from ~/.aws/config file because they are not read upon initialization
         
-        console.log(key + '@' + version.join('.') + '=' + host + ':' + port);
+        var dynamo = new AWS.DynamoDB();
+        
+        if(task === 'set') {
+            var key = argv._[1],
+                host = argv.host,
+                port = argv.port,
+                version = argv.version.split('.');
+            
+            console.log(key + '@' + version.join('.') + '=' + host + ':' + port);
+        }
     }
 };
