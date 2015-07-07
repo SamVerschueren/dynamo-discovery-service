@@ -62,11 +62,8 @@ function runTask(task) {
         fs.writeFileSync(path.join(pwuid().dir, '/.aws/config'), config.join(os.EOL));
     }
     else {
-        // TODO read region from ~/.aws/config file because they are not read upon initialization
-        
-        var dynamo = new AWS.DynamoDB();
-        
-        console.log(dynamo);
+        var awsconfig = parseConfig(path.join(pwuid().dir, '/.aws/config')),
+            dynamo = new AWS.DynamoDB(awsconfig[process.env.AWS_PROFILE]);
         
         if(task === 'set') {
             var key = argv._[1],
@@ -74,7 +71,56 @@ function runTask(task) {
                 port = argv.port,
                 version = argv.version.split('.');
             
-            console.log(key + '@' + version.join('.') + '=' + host + ':' + port);
+            var params = {
+                TableName: 'dds',
+                Item: {
+                    name: {
+                        'S': key
+                    },
+                    host: {
+                        'S': host
+                    },
+                    port: {
+                        'N': port.toString()
+                    },
+                    majorVersion: {
+                        'N': version[0]
+                    },
+                    minorVersion: {
+                        'N': version[1] || 0
+                    }
+                }
+            }
+            
+            dynamo.putItem(params, function(err, result) {
+                if(err) {
+                    console.error(err);
+                    return;
+                }   
+                
+                console.log(result);
+            });
         }
     }
+};
+
+function parseConfig(path) {
+    var content = fs.readFileSync(path).toString();
+    
+    var result = {},
+        currentProfile = undefined,
+        temp;
+    
+    content.split(os.EOL).forEach(function(line) {
+        if(temp = /^\[(.*?)\]$/.exec(line)) {
+            currentProfile = temp[1];
+            
+            result[currentProfile] = {};
+        }
+        else if(temp = /^(.*?)=(.*?)$/.exec(line)) {
+            result[currentProfile][temp[1]] = temp[2];
+        }
+    });
+    
+    return result;
 };
