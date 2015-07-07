@@ -15,6 +15,9 @@
  * @since  3 Jul. 2015
  */
 
+// Set the AWS profile to load the correct config
+process.env.AWS_PROFILE='dds';
+
 // module dependencies
 var AWS = require('aws-sdk'),
     fs = require('fs'),
@@ -46,12 +49,12 @@ function runTask(task) {
             config = [];
         
         // Set the credentials
-        credentials.push('[default]');
+        credentials.push('[' + process.env.AWS_PROFILE + ']');
         credentials.push('aws_access_key_id=' + argv.accessKeyId);
         credentials.push('aws_secret_access_key=' + argv.secretAccessKey);
         
         // Set the config
-        config.push('[default]');
+        config.push('[' + process.env.AWS_PROFILE + ']');
         config.push('region=' + argv.region);
         config.push('output=json');
         
@@ -62,6 +65,8 @@ function runTask(task) {
         // TODO read region from ~/.aws/config file because they are not read upon initialization
         
         var dynamo = new AWS.DynamoDB();
+        
+        console.log(dynamo);
         
         if(task === 'set') {
             var key = argv._[1],
