@@ -6,9 +6,6 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "bin": {
-    "dds": "./bin/dds.js"
-  },
   "repository": {
     "type": "git",
     "url": "https://github.com/SamVerschueren/dynamo-discovery-service.git"
