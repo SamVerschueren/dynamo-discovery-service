@@ -33,7 +33,7 @@ In order for the service to store and read services from the DynamoDB database, 
 the `dds` user and the region.
 
 ```bash
-$ dds configure --accessKeyId A2OIAQO7KYV45PELFWAJ --secretAccessKey YXImTkYVxDFPo2zQfCPBdhyzXHZY5h9g+HlFUF8i --region us-west-1
+$ dds configure --accessKeyId <key> --secretAccessKey <secret> --region us-west-1
 ```
 
 ### Store service
