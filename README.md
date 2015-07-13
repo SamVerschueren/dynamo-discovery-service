@@ -5,7 +5,7 @@
 ## Installation (not yet available)
 
 ```bash
-$ npm install dds
+$ npm install --save dds
 ```
 
 ## Introduction
