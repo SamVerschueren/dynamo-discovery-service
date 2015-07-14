@@ -48,7 +48,7 @@ dds.get('mongo').then(function(mongo) {
 You can also pass in the version you want to retrieve. You can either specify a specific version, or a non-specific version.
 
 ```javascript
-// Retrieve the latest mongo service
+// Retrieve a specific mongo service
 dds.get('mongo', '1.2').then(function(mongo) {
     // Connect with the mongodb service
 }).catch(function(err) {
